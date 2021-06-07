@@ -20,8 +20,8 @@ class SingleBook extends Component {
   render() {
     const mystyle = {
       position: "absolute",
-      top: "20%",
-      right: "0",
+      top: "100px",
+      right: "5px",
     };
     return (
         <Card 
@@ -74,7 +74,7 @@ class SingleBook extends Component {
 
   componentDidUpdate = (prevProps, prevState ) => {
     // console.log(prevState)
-    console.log(this.state)
+    // console.log(this.state)
   }
   
   componentDidMount = async () => {

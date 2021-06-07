@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { ListGroup, Form, Button } from 'react-bootstrap'
+import { ListGroup, Button } from 'react-bootstrap'
 import DeleteComment from './DeleteComment'
 import EditComment from './EditComment'
 
