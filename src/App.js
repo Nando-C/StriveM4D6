@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import MyNavBar from './components/MyNavBar';
@@ -6,6 +6,7 @@ import MyFooter from './components/MyFooter';
 import Welcome from './components/Welcome';
 import LatestRelease from './components/LatestRelease'
 import BookList from "./components/BookList"
+// import CommentArea from "./components/CommentArea"
 import books from "./data/fantasy.json";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <footer>
         <MyFooter />
       </footer>
-     </div>
+    </div>
   );
 }
 

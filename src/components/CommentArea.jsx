@@ -15,9 +15,9 @@ class CommentArea extends Component {
         return (  
             <>
                 <img className='m-5' src={this.props.book.img} alt='book cover'/>
-                <CommentsList comments={this.props.comments}/>
-                <AddComment book={this.props.book}/>
-
+                <CommentsList comments={this.props.comments} bookId={this.props.book.asin} onDeleteComment={this.props.onDeleteComment} updateComment={this.props.updateComment}/>
+                <AddComment book={this.props.book} onNewComment={this.props.onNewComment}/>
+                {/* {console.log(this.props.onNewComment)} */}
             </>
             // <Modal show={show} onHide={handleClose}>
             //     <Modal.Header closeButton>

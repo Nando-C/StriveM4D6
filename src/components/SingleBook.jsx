@@ -11,24 +11,6 @@ import MyBadge from "./MyBadge";
 // import CommentsList from "./CommentsList";
 import CommentArea from "./CommentArea"
 
-// const SingleBook = ({ book }) => {
-//   return (
-//     <div>
-//       <Card>
-//         <Card.Img variant="top" src={book.img} style={{height: '300px'}} />
-//         <MyBadge text={book.price} color='warning' />
-//         <Card.Body>
-//           <Card.Title>{book.title}</Card.Title>
-//           <Card.Text>
-//             {book.category}
-//           </Card.Text>
-//         </Card.Body>
-//       </Card>
-//     </div>
-//   );
-// };
-
-// export default SingleBook;
 
 class SingleBook extends Component {
   state = {
@@ -64,11 +46,36 @@ class SingleBook extends Component {
             <Card.Text>{this.props.book.category}</Card.Text>
           </Card.Body>
           {/* {this.state.selected && <CommentsList comments={this.state.comments}/>} */}
-          {this.state.selected && <CommentArea comments={this.state.comments} book ={this.props.book}/>}
+          {this.state.selected && <CommentArea comments={this.state.comments} book ={this.props.book} onNewComment={this.onNewComment} onDeleteComment={this.onDeleteComment} updateComment={this.updateComment}/>}
         </Card>
     );
   }
 
+  onNewComment = (newComment) => {
+    // console.log(newComment)
+    this.setState({
+      comments: [...this.state.comments, newComment],
+    })
+  }
+
+  updateComment = (updatedComment) => {
+    const commentsRef = this.state.comments
+    const positionToUpdate = commentsRef.map(comm => comm._id).indexOf(updatedComment._id)
+    commentsRef[positionToUpdate] = updatedComment
+    this.setState({
+      comments: commentsRef
+    })
+  }
+  onDeleteComment = (commentId) => {
+    this.setState({
+      comments: this.state.comments.filter(comment => comment._id !== commentId )
+    })
+  }
+
+  componentDidUpdate = (prevProps, prevState ) => {
+    // console.log(prevState)
+    console.log(this.state)
+  }
   
   componentDidMount = async () => {
     const apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2Y4MWNlYWY0ODAwMTVjOTE4NmEiLCJpYXQiOjE2MjIwMzIyNTcsImV4cCI6MTYyMzI0MTg1N30.COuaWwE7g5o-UfUez4tVCPw0zZc5llB7Jqgsp37LrSA'
@@ -81,8 +88,8 @@ class SingleBook extends Component {
     })
     const userComments = await response.json()
 
-    console.log(apiUrl + this.props.book.asin)
-    console.log(userComments)
+    // console.log(apiUrl + this.props.book.asin)
+    // console.log(userComments)
     this.setState({
       comments: userComments
     })

@@ -11,7 +11,7 @@ class AddComment extends Component {
     }
 
     inputChange = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         this.setState({
             review: {
                 ...this.state.review,
@@ -22,7 +22,7 @@ class AddComment extends Component {
 
     submitReview = async (e) => {
         e.preventDefault()
-        console.log(this.state.review)
+        // console.log(this.state.review)
         const apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2Y4MWNlYWY0ODAwMTVjOTE4NmEiLCJpYXQiOjE2MjIwMzIyNTcsImV4cCI6MTYyMzI0MTg1N30.COuaWwE7g5o-UfUez4tVCPw0zZc5llB7Jqgsp37LrSA'
         const apiUrl = 'https://striveschool-api.herokuapp.com/api/comments/'
         try {
@@ -36,6 +36,8 @@ class AddComment extends Component {
             })
             // console.log(response)
             if (response.ok) {
+                // console.log(await response.json())
+                this.props.onNewComment(await response.json())
                 this.setState({
                     review: {
                         comment: '',
@@ -70,7 +72,7 @@ class AddComment extends Component {
                             <option>5</option>
                         </Form.Control>
                     </Form.Group>
-                    <Button  variant="primary" size='sm' type="submit">
+                    <Button className='ml-3' variant="primary" size='sm' type="submit">
                         Add Review
                     </Button>
                 </Form>

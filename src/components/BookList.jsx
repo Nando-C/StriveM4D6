@@ -20,6 +20,9 @@ class BookList extends Component {
             </Form.Group>
           </Col>
         </Row>
+        <Row>
+        {/* <CommentArea /> */}
+        </Row>
         <Row className="my-5">
           {this.props.books.filter(book => book.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map((book) => (
             <Col xs={12} sm={6} md={4} lg={3} key={book.asin} className='mb-4'>

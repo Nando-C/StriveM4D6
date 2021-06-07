@@ -17,6 +17,7 @@ class DeleteComment extends Component {
             })
             // console.log(response.ok)
             if (response.ok ){
+                this.props.onDeleteComment(this.props.comment._id)
                 alert('Comment deleted successfully')
             } else {
                 alert('There was an error, please try againg')
