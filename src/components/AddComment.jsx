@@ -1,34 +1,40 @@
-import { Component } from 'react'
+// import { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useState } from 'react'
 
-class AddComment extends Component {
-    state = { 
-        review: {
-            comment: '',
-            rate: 'Select Rating',
-            elementId: this.props.book.asin
-        } 
-    }
+const AddComment = (props) => {
+    const [review, setReview] = useState({
+        comment: '',
+        rate: 'Select Rating',
+        elementId: props.book.asin
+    } )
+    // state = { 
+    //     review: {
+    //         comment: '',
+    //         rate: 'Select Rating',
+    //         elementId: props.book.asin
+    //     } 
+    // }
 
-    inputChange = (e) => {
+    const inputChange = (e) => {
         // console.log(e.target.value)
-        this.setState({
-            review: {
-                ...this.state.review,
+        setReview(
+            {
+                ...review,
                 [e.target.id]: e.target.value,
             }
-        })
+        )
     }
 
-    submitReview = async (e) => {
+    const submitReview = async (e) => {
         e.preventDefault()
-        // console.log(this.state.review)
+        // console.log(review)
         const apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2Y4MWNlYWY0ODAwMTVjOTE4NmEiLCJpYXQiOjE2MjIwMzIyNTcsImV4cCI6MTYyMzI0MTg1N30.COuaWwE7g5o-UfUez4tVCPw0zZc5llB7Jqgsp37LrSA'
         const apiUrl = 'https://striveschool-api.herokuapp.com/api/comments/'
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
-                body: JSON.stringify(this.state.review),
+                body: JSON.stringify(review),
                 headers: {
                     "Authorization": `Bearer ${apiToken}`,
                     "Content-type": "application/json"
@@ -37,14 +43,14 @@ class AddComment extends Component {
             // console.log(response)
             if (response.ok) {
                 // console.log(await response.json())
-                this.props.onNewComment(await response.json())
-                this.setState({
-                    review: {
+                props.onNewComment(await response.json())
+                setReview(
+                    {
                         comment: '',
                         rate: 'Select Rating',
-                        elementId: this.props.book.asin
+                        elementId: props.book.asin
                     } 
-                })
+                )
                 alert('Review Submited')
             } else {
                 alert('There was a problem, please try again')
@@ -55,15 +61,14 @@ class AddComment extends Component {
         }
     }
 
-    render() { 
         return (  
             <>
-                <Form className="my-3" onSubmit={(e) => this.submitReview(e)} >
+                <Form className="my-3" onSubmit={(e) => submitReview(e)} >
                     <Form.Group className='px-3'>
-                        <Form.Control id="comment" as="textarea" rows={3} placeholder="Write a review" value={this.state.review.comment} onChange={e => this.inputChange(e)}/>
+                        <Form.Control id="comment" as="textarea" rows={3} placeholder="Write a review" value={review.comment} onChange={e => inputChange(e)}/>
                     </Form.Group>
                     <Form.Group className='px-3'>
-                        <Form.Control id="rate" size='sm' as="select" value={this.state.review.rate}  onChange={e => this.inputChange(e)}>
+                        <Form.Control id="rate" size='sm' as="select" value={review.rate}  onChange={e => inputChange(e)}>
                             <option>Select Rating</option>
                             <option>1</option>
                             <option>2</option>
@@ -78,7 +83,6 @@ class AddComment extends Component {
                 </Form>
             </>
         );
-    }
 }
  
 export default AddComment;
