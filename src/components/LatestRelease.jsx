@@ -1,9 +1,8 @@
-import { Component } from "react";
+// import { Component } from "react";
 import { Container, Row, Carousel, Col } from "react-bootstrap";
 import books from '../data/fantasy.json'
 
-class LatestRelease extends Component {
-    render() {
+const LatestRelease = () => {
         return (
             <Container >
                 <Row className='justify-content-center mb-5'>
@@ -30,6 +29,5 @@ class LatestRelease extends Component {
                 </Row>
             </Container>
         )
-    }
 }
 export default LatestRelease
