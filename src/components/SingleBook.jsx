@@ -5,19 +5,15 @@
 // book files we gave you yesterday).
 
 /* book json can be found in data folder */
-import { Component } from "react";
+// import { Component } from "react";
 import { Card } from "react-bootstrap";
 import MyBadge from "./MyBadge";
 // import CommentsList from "./CommentsList";
-import CommentArea from "./CommentArea"
+// import CommentArea from "./CommentArea"
 
 
-class SingleBook extends Component {
-  state = {
-    // selected: false,
-    // comments: [],
-  };
-  render() {
+const SingleBook =(props) => {
+  
     const mystyle = {
       position: "absolute",
       top: "100px",
@@ -27,30 +23,30 @@ class SingleBook extends Component {
         <Card 
           className='h-100'
           // onClick={() => this.setState({selected: !this.state.selected})}
-          style={{transform: this.state.selected ? 'scale(0.99)' : 'none'}}
+          // style={{transform: this.state.selected ? 'scale(0.99)' : 'none'}}
         >
           <Card.Img
             // onClick={() => this.setState({selected: !this.state.selected})}
-            onClick={() => this.props.onBookSelected(this.props.book)}
+            onClick={() => props.onBookSelected(props.book)}
             className="w-100"
             variant="top"
-            src={this.props.book.img}
+            src={props.book.img}
             style={{ height: "300px" }}
           />
           <MyBadge
             style={mystyle}
-            text={this.props.book.price}
+            text={props.book.price}
             color="warning"
           />
           <Card.Body>
-            <Card.Title>{this.props.book.title}</Card.Title>
-            <Card.Text>{this.props.book.category}</Card.Text>
+            <Card.Title>{props.book.title}</Card.Title>
+            <Card.Text>{props.book.category}</Card.Text>
           </Card.Body>
           {/* {this.state.selected && <CommentsList comments={this.state.comments}/>} */}
-          {this.state.selected && <CommentArea comments={this.state.comments} book ={this.props.book} onNewComment={this.onNewComment} onDeleteComment={this.onDeleteComment} updateComment={this.updateComment}/>}
+          {/* {this.state.selected && <CommentArea comments={this.state.comments} book ={this.props.book} onNewComment={this.onNewComment} onDeleteComment={this.onDeleteComment} updateComment={this.updateComment}/>} */}
         </Card>
     );
-  }
+  
 
   // onNewComment = (newComment) => {
   //   // console.log(newComment)
