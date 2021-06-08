@@ -4,14 +4,20 @@
 import { Component } from "react";
 import { Col, Container, Row, Form } from "react-bootstrap";
 import SingleBook from "./SingleBook";
+import CommentArea from "./CommentArea"
 // import SingleBook from "./SingleBook";
+
 class BookList extends Component {
   state = {
-    searchQuery:''
+    searchQuery:'',
+    selectedBook: undefined
   };
   render() {
     return (
       <Container> 
+        <Row>
+        <CommentArea book= {this.state.selectedBook}/>
+        </Row>
         <Row>
           <Col>
             <Form.Group className='mt-4' controlId="formGroupEmail">
@@ -20,13 +26,11 @@ class BookList extends Component {
             </Form.Group>
           </Col>
         </Row>
-        <Row>
-        {/* <CommentArea /> */}
-        </Row>
+        
         <Row className="my-5">
           {this.props.books.filter(book => book.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map((book) => (
             <Col xs={12} sm={6} md={4} lg={3} key={book.asin} className='mb-4'>
-              <SingleBook book={book} />
+              <SingleBook book={book} onBookSelected={(book)=> this.setState({selectedBook: book})}/>
             </Col>
           ))}
         </Row>

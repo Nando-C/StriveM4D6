@@ -14,8 +14,8 @@ import CommentArea from "./CommentArea"
 
 class SingleBook extends Component {
   state = {
-    selected: false,
-    comments: [],
+    // selected: false,
+    // comments: [],
   };
   render() {
     const mystyle = {
@@ -30,7 +30,8 @@ class SingleBook extends Component {
           style={{transform: this.state.selected ? 'scale(0.99)' : 'none'}}
         >
           <Card.Img
-            onClick={() => this.setState({selected: !this.state.selected})}
+            // onClick={() => this.setState({selected: !this.state.selected})}
+            onClick={() => this.props.onBookSelected(this.props.book)}
             className="w-100"
             variant="top"
             src={this.props.book.img}
@@ -51,49 +52,49 @@ class SingleBook extends Component {
     );
   }
 
-  onNewComment = (newComment) => {
-    // console.log(newComment)
-    this.setState({
-      comments: [...this.state.comments, newComment],
-    })
-  }
+  // onNewComment = (newComment) => {
+  //   // console.log(newComment)
+  //   this.setState({
+  //     comments: [...this.state.comments, newComment],
+  //   })
+  // }
 
-  updateComment = (updatedComment) => {
-    const commentsRef = this.state.comments
-    const positionToUpdate = commentsRef.map(comm => comm._id).indexOf(updatedComment._id)
-    commentsRef[positionToUpdate] = updatedComment
-    this.setState({
-      comments: commentsRef
-    })
-  }
-  onDeleteComment = (commentId) => {
-    this.setState({
-      comments: this.state.comments.filter(comment => comment._id !== commentId )
-    })
-  }
+  // updateComment = (updatedComment) => {
+  //   const commentsRef = this.state.comments
+  //   const positionToUpdate = commentsRef.map(comm => comm._id).indexOf(updatedComment._id)
+  //   commentsRef[positionToUpdate] = updatedComment
+  //   this.setState({
+  //     comments: commentsRef
+  //   })
+  // }
+  // onDeleteComment = (commentId) => {
+  //   this.setState({
+  //     comments: this.state.comments.filter(comment => comment._id !== commentId )
+  //   })
+  // }
 
-  componentDidUpdate = (prevProps, prevState ) => {
+  // componentDidUpdate = (prevProps, prevState ) => {
     // console.log(prevState)
     // console.log(this.state)
-  }
+  // }
   
-  componentDidMount = async () => {
-    const apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2Y4MWNlYWY0ODAwMTVjOTE4NmEiLCJpYXQiOjE2MjIwMzIyNTcsImV4cCI6MTYyMzI0MTg1N30.COuaWwE7g5o-UfUez4tVCPw0zZc5llB7Jqgsp37LrSA'
-    const apiUrl = 'https://striveschool-api.herokuapp.com/api/comments/'
+  // componentDidMount = async () => {
+  //   const apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2Y4MWNlYWY0ODAwMTVjOTE4NmEiLCJpYXQiOjE2MjIwMzIyNTcsImV4cCI6MTYyMzI0MTg1N30.COuaWwE7g5o-UfUez4tVCPw0zZc5llB7Jqgsp37LrSA'
+  //   const apiUrl = 'https://striveschool-api.herokuapp.com/api/comments/'
 
-    const response = await fetch(apiUrl + this.props.book.asin, {
-      headers: {
-        "Authorization": `Bearer ${apiToken}`
-      }
-    })
-    const userComments = await response.json()
+  //   const response = await fetch(apiUrl + this.props.book.asin, {
+  //     headers: {
+  //       "Authorization": `Bearer ${apiToken}`
+  //     }
+  //   })
+  //   const userComments = await response.json()
 
-    // console.log(apiUrl + this.props.book.asin)
-    // console.log(userComments)
-    this.setState({
-      comments: userComments
-    })
-  }
+  //   // console.log(apiUrl + this.props.book.asin)
+  //   // console.log(userComments)
+  //   this.setState({
+  //     comments: userComments
+  //   })
+  // }
 }
 
 export default SingleBook;
