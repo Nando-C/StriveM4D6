@@ -7,9 +7,9 @@ const MyNavBar = (props) => (
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                <Nav.Link href="#features">Home</Nav.Link>
-                <Nav.Link href="#pricing">About</Nav.Link>
-                <Nav.Link href="#pricing">Browse</Nav.Link>
+                    <Nav.Link href="#features">Home</Nav.Link>
+                    <Nav.Link href="#pricing">About</Nav.Link>
+                    <Nav.Link href="#pricing">Browse</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         {/* </Container> */}

@@ -11,10 +11,7 @@ import { useState } from 'react'
 const BookList = (props) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedBook, setSelectedBook] = useState(undefined)
-  // state = {
-  //   searchQuery:'',
-  //   selectedBook: undefined
-  // };
+  
     return (
       <Container> 
         <Row>
