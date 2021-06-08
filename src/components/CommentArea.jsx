@@ -8,11 +8,6 @@ import { useState, useEffect, useRef } from 'react'
 const CommentArea = (props) => {
   const [selected, setSelected] = useState(false)
   const [comments, setComments] = useState([])
-    // state = {  
-    //     selected: false,
-    //     comments: [],
-        
-    // }
 
     const onNewComment = (newComment) => {
       // console.log(newComment)
